@@ -1,9 +1,12 @@
-﻿using CSharpFunctionalExtensions;
+﻿using PetFamily.Domain.Shared;
 
-namespace PetFamily.Domain.Models;
+namespace PetFamily.Domain.Models.Pets;
 
-public sealed class Pet
+public sealed class Pet : Entity<PetId>
 {
+    private readonly List<PetPhoto> _photos = [];
+    private readonly List<Requisite> _requisites = [];
+
     public Pet(
         PetId id,
         string name,
@@ -21,8 +24,8 @@ public sealed class Pet
         bool isVaccine,
         string helpStatus,
         DateTimeOffset createdDate)
+    : base(id)
     {
-        Id = id;
         Name = name;
         Type = type;
         Description = description;
@@ -39,9 +42,7 @@ public sealed class Pet
         HelpStatus = helpStatus;
         CreatedDate = createdDate;
     }
-
-    public PetId Id { get; private set; }
-
+    
     public string Name { get; private set; }
 
     public string Type { get; private set; }
@@ -55,26 +56,24 @@ public sealed class Pet
     public string HealthInfo { get; private set; }
 
     public string Address { get; private set; }
-    
+
     public double Weight { get; private set; }
-    
+
     public double Height { get; private set; }
 
     public string PhoneNumber { get; private set; }
-    
+
     public bool IsCastrated { get; private set; }
-    
+
     public DateTimeOffset BirthDate { get; private set; }
-    
+
     public bool IsVaccine { get; private set; }
 
     public string HelpStatus { get; private set; }
 
     public IReadOnlyList<Requisite> Requisites => _requisites;
-    private List<Requisite> _requisites = [];
 
     public IReadOnlyList<PetPhoto> Photos => _photos;
-    private List<PetPhoto> _photos  = [];
-    
+
     public DateTimeOffset CreatedDate { get; private set; }
 }

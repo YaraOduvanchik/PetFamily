@@ -1,4 +1,4 @@
-﻿namespace PetFamily.Domain.Models;
+﻿namespace PetFamily.Domain.Models.Pets;
 
 public record PetPhotoId
 {
@@ -12,6 +12,6 @@ public record PetPhotoId
     public static PetPhotoId NewId() => new(Guid.NewGuid());
 
     public static PetPhotoId Empty() => new(Guid.Empty);
-
+    
     public static PetPhotoId Create(Guid id) => new(id);
 }
