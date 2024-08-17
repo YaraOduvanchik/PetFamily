@@ -1,9 +1,11 @@
-﻿namespace PetFamily.Domain.Models;
+﻿using CSharpFunctionalExtensions;
+
+namespace PetFamily.Domain.Models;
 
 public sealed class Pet
 {
     public Pet(
-        Guid id,
+        PetId id,
         string name,
         string type,
         string description,
@@ -38,7 +40,7 @@ public sealed class Pet
         CreatedDate = createdDate;
     }
 
-    public Guid Id { get; private set; }
+    public PetId Id { get; private set; }
 
     public string Name { get; private set; }
 
@@ -70,6 +72,9 @@ public sealed class Pet
 
     public IReadOnlyList<Requisite> Requisites => _requisites;
     private List<Requisite> _requisites = [];
+
+    public IReadOnlyList<PetPhoto> Photos => _photos;
+    private List<PetPhoto> _photos  = [];
     
     public DateTimeOffset CreatedDate { get; private set; }
 }
