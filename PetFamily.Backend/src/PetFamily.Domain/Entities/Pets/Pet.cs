@@ -1,11 +1,16 @@
 ﻿using PetFamily.Domain.Shared;
+using PetFamily.Domain.ValueObjects;
 
-namespace PetFamily.Domain.Models.Pets;
+namespace PetFamily.Domain.Entities.Pets;
 
 public sealed class Pet : Entity<PetId>
 {
     private readonly List<PetPhoto> _photos = [];
     private readonly List<Requisite> _requisites = [];
+
+    private Pet(PetId Id) 
+        : base(Id)
+    {}
 
     public Pet(
         PetId id,
@@ -15,16 +20,16 @@ public sealed class Pet : Entity<PetId>
         string breed,
         string color,
         string healthInfo,
-        string address,
+        Address address,
         double weight,
         double height,
-        string phoneNumber,
+        PhoneNumber phoneNumber,
         bool isCastrated,
         DateTimeOffset birthDate,
         bool isVaccine,
-        string helpStatus,
+        HelpStatus helpStatus,
         DateTimeOffset createdDate)
-    : base(id)
+        : base(id)
     {
         Name = name;
         Type = type;
@@ -42,7 +47,7 @@ public sealed class Pet : Entity<PetId>
         HelpStatus = helpStatus;
         CreatedDate = createdDate;
     }
-    
+
     public string Name { get; private set; }
 
     public string Type { get; private set; }
@@ -55,13 +60,13 @@ public sealed class Pet : Entity<PetId>
 
     public string HealthInfo { get; private set; }
 
-    public string Address { get; private set; }
+    public Address Address { get; private set; }
 
     public double Weight { get; private set; }
 
     public double Height { get; private set; }
 
-    public string PhoneNumber { get; private set; }
+    public PhoneNumber PhoneNumber { get; private set; }
 
     public bool IsCastrated { get; private set; }
 
@@ -69,7 +74,7 @@ public sealed class Pet : Entity<PetId>
 
     public bool IsVaccine { get; private set; }
 
-    public string HelpStatus { get; private set; }
+    public HelpStatus HelpStatus { get; private set; }
 
     public IReadOnlyList<Requisite> Requisites => _requisites;
 
