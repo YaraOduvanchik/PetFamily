@@ -10,9 +10,9 @@ public record Requisite
         Description = description;
     }
 
-    public string Title { get; private set; } = default!;
+    public string Title { get; } = default!;
 
-    public string Description { get; private set; } = default!;
+    public string Description { get; } = default!;
 
     public static Result<Requisite> Create(string title, string description)
     {

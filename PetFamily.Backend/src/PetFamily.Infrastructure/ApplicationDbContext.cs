@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using PetFamily.Domain.Entities.Pets;
+using PetFamily.Domain.Entities.Specieses;
+using PetFamily.Domain.Entities.Volunteers;
 
 namespace PetFamily.Infrastructure;
 
@@ -14,6 +17,9 @@ public class ApplicationDbContext : DbContext
         _configuration = configuration;
     }
     
+    public DbSet<Volunteer> Volunteers => Set<Volunteer>();
+    public DbSet<Species> Species => Set<Species>();
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(_configuration.GetConnectionString(DATABASE));
@@ -26,7 +32,8 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 
-    private ILoggerFactory CreateLoggerFactory() => 
-        LoggerFactory.Create(builder => builder.AddConsole());
-
+    private ILoggerFactory CreateLoggerFactory()
+    {
+        return LoggerFactory.Create(builder => builder.AddConsole());
+    }
 }

@@ -14,18 +14,15 @@ public sealed class Volunteer : Entity<VolunteerId>
     {
     }
 
-    public Fullname FullName { get; private set; }
+    public Fullname FullName { get; }
+    public PhoneNumber PhoneNumber { get; }
 
-    public string Descriptions { get; private set; }
+    public string Descriptions { get; }
 
-    public int ExperienceInYears { get; private set; }
-
-    public PhoneNumber PhoneNumber { get; private set; }
+    public int ExperienceInYears { get; }
 
     public IReadOnlyList<SocialNetwork> SocialNetworks => _socialNetworks;
-
     public IReadOnlyList<Requisite> Requisites => _requisites;
-
     public IReadOnlyList<Pet> Pets => _pets;
 
     public int CountPetsFoundHomes() => _pets.Count(p => p.HelpStatus == HelpStatus.FoundTheHouse);

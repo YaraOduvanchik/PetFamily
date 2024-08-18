@@ -25,7 +25,7 @@ public record HelpStatus
 
         var helpStatus = value.Trim().ToLower();
 
-        if (_helpStatuses.Any(hs => hs.Value.ToLower() == helpStatus) == false) 
+        if (_helpStatuses.Any(hs => hs.Value.ToLower() == helpStatus) == false)
             throw new ArgumentException();
 
         return new HelpStatus(value);

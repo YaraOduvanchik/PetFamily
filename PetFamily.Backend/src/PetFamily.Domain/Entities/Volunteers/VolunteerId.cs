@@ -7,11 +7,20 @@ public record VolunteerId
         Value = value;
     }
 
-    public Guid Value { get; private set; }
+    public Guid Value { get; }
 
-    public static VolunteerId NewId() => new(Guid.NewGuid());
+    public static VolunteerId NewId()
+    {
+        return new VolunteerId(Guid.NewGuid());
+    }
 
-    public static VolunteerId Empty() => new(Guid.Empty);
+    public static VolunteerId Empty()
+    {
+        return new VolunteerId(Guid.Empty);
+    }
 
-    public static VolunteerId Create(Guid id) => new(id);
+    public static VolunteerId Create(Guid id)
+    {
+        return new VolunteerId(id);
+    }
 }

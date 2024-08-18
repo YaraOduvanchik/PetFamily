@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PetFamily.Domain.Entities.Pets;
+using PetFamily.Domain.Entities.Specieses;
 
 namespace PetFamily.Infrastructure.Configurations;
 
@@ -75,6 +76,21 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 
         builder.Property(p => p.IsVaccine)
             .IsRequired();
+
+        builder.ComplexProperty(p => p.PetDetails, b =>
+        {
+            b.Property(p => p.SpeciesId)
+                .HasColumnName("species_id")
+                .HasConversion(
+                    id => id.Value,
+                    value => SpeciesId.Create(value));
+
+            b.Property(pd => pd.BreedId)
+                .HasColumnName("breed_id")
+                .HasConversion(
+                    id => id.Value,
+                    value => BreedId.Create(value));
+        });
 
         builder.ComplexProperty(p => p.HelpStatus, b =>
         {
