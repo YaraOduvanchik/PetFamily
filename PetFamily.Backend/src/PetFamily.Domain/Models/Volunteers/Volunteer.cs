@@ -1,43 +1,54 @@
-﻿namespace PetFamily.Domain.Models;
+﻿using PetFamily.Domain.Models.Pets;
+using PetFamily.Domain.Shared;
 
-public class Volunteer
+namespace PetFamily.Domain.Models.Volunteers;
+
+public sealed class Volunteer : Entity<VolunteerId>
 {
+    private readonly List<Pet> _pets = [];
+    private readonly List<Requisite> _requisites = [];
+    private readonly List<SocialNetwork> _socialNetworks = [];
+
     public Volunteer(
-        Guid id, 
-        string fullName, 
-        string descriptions, 
+        VolunteerId id,
+        string fullName,
+        string descriptions,
         int experienceInYears,
         string phoneNumber)
+        : base(id)
     {
-        Id = id;
         FullName = fullName;
         Descriptions = descriptions;
         ExperienceInYears = experienceInYears;
         PhoneNumber = phoneNumber;
     }
 
-    public Guid Id { get; private set; }
-    
     public string FullName { get; private set; }
-    
+
     public string Descriptions { get; private set; }
-    
+
     public int ExperienceInYears { get; private set; }
 
     public string PhoneNumber { get; private set; }
 
     public IReadOnlyList<SocialNetwork> SocialNetworks => _socialNetworks;
-    private List<SocialNetwork> _socialNetworks = [];
-    
-    public IReadOnlyList<Requisite> Requisites => _requisites;
-    private List<Requisite> _requisites = [];
-    
-    public IReadOnlyList<Pet> Pets => _pets;
-    private List<Pet> _pets = [];
-    
-    public int CountPetsFoundHomes() => 0;
 
-    public int CountPetsLookingForHomes() => 0;
-    
-    public int CountPetsCurrentlyTreatment() => 0;
+    public IReadOnlyList<Requisite> Requisites => _requisites;
+
+    public IReadOnlyList<Pet> Pets => _pets;
+
+    public int CountPetsFoundHomes()
+    {
+        return 0;
+    }
+
+    public int CountPetsLookingForHomes()
+    {
+        return 0;
+    }
+
+    public int CountPetsCurrentlyTreatment()
+    {
+        return 0;
+    }
 }
