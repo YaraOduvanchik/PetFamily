@@ -16,7 +16,7 @@ public record PhoneNumber
 
     public string Value { get; }
 
-    public Result<PhoneNumber, Error> Create(string value)
+    public static Result<PhoneNumber, Error> Create(string value)
     {
         if (string.IsNullOrWhiteSpace(value) && Regex.IsMatch(value, REGEX_RUSSIAN_PHONE_NUMBER) == false)
             return Errors.General.ValueIsInvalid("Phone Number");
