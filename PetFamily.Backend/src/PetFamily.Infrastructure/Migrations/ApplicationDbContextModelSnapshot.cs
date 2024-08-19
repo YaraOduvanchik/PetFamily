@@ -30,17 +30,14 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTimeOffset>("BirthDate")
+                        .HasMaxLength(150)
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("birth_date");
 
-                    b.Property<string>("Breed")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("breed");
-
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("color");
 
                     b.Property<DateTimeOffset>("CreatedDate")
@@ -49,12 +46,14 @@ namespace PetFamily.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)")
                         .HasColumnName("description");
 
                     b.Property<string>("HealthInfo")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)")
                         .HasColumnName("health_info");
 
                     b.Property<double>("Height")
@@ -62,21 +61,25 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasColumnName("height");
 
                     b.Property<bool>("IsCastrated")
+                        .HasMaxLength(150)
                         .HasColumnType("boolean")
                         .HasColumnName("is_castrated");
 
                     b.Property<bool>("IsVaccine")
+                        .HasMaxLength(150)
                         .HasColumnType("boolean")
                         .HasColumnName("is_vaccine");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("name");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("type");
 
                     b.Property<double>("Weight")
@@ -93,22 +96,26 @@ namespace PetFamily.Infrastructure.Migrations
 
                             b1.Property<string>("City")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
                                 .HasColumnName("city");
 
                             b1.Property<string>("Country")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
                                 .HasColumnName("country");
 
                             b1.Property<string>("House")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
                                 .HasColumnName("house");
 
                             b1.Property<string>("Street")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
                                 .HasColumnName("street");
                         });
 
@@ -118,7 +125,8 @@ namespace PetFamily.Infrastructure.Migrations
 
                             b1.Property<string>("Value")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
                                 .HasColumnName("help_status");
                         });
 
@@ -141,7 +149,8 @@ namespace PetFamily.Infrastructure.Migrations
 
                             b1.Property<string>("Value")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
                                 .HasColumnName("phone_number");
                         });
 
@@ -166,7 +175,8 @@ namespace PetFamily.Infrastructure.Migrations
 
                     b.Property<string>("Path")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("path");
 
                     b.Property<Guid?>("pet_id")
@@ -190,12 +200,14 @@ namespace PetFamily.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)")
                         .HasColumnName("description");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("name");
 
                     b.Property<Guid?>("species_id")
@@ -219,7 +231,8 @@ namespace PetFamily.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
                         .HasColumnName("name");
 
                     b.HasKey("Id")
@@ -236,7 +249,8 @@ namespace PetFamily.Infrastructure.Migrations
 
                     b.Property<string>("Descriptions")
                         .IsRequired()
-                        .HasColumnType("text")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)")
                         .HasColumnName("descriptions");
 
                     b.Property<int>("ExperienceInYears")
@@ -249,17 +263,20 @@ namespace PetFamily.Infrastructure.Migrations
 
                             b1.Property<string>("Name")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
                                 .HasColumnName("name");
 
                             b1.Property<string>("Patronymic")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
                                 .HasColumnName("patronymic");
 
                             b1.Property<string>("Surname")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
                                 .HasColumnName("surname");
                         });
 
@@ -269,7 +286,8 @@ namespace PetFamily.Infrastructure.Migrations
 
                             b1.Property<string>("Value")
                                 .IsRequired()
-                                .HasColumnType("text")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
                                 .HasColumnName("phone_number");
                         });
 
@@ -297,11 +315,13 @@ namespace PetFamily.Infrastructure.Migrations
 
                             b1.Property<string>("Description")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasMaxLength(2000)
+                                .HasColumnType("character varying(2000)");
 
                             b1.Property<string>("Title")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
 
                             b1.HasKey("PetId", "Id")
                                 .HasName("pk_pet");
@@ -347,11 +367,13 @@ namespace PetFamily.Infrastructure.Migrations
 
                             b1.Property<string>("Description")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasMaxLength(2000)
+                                .HasColumnType("character varying(2000)");
 
                             b1.Property<string>("Title")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
 
                             b1.HasKey("VolunteerId", "Id");
 
@@ -375,11 +397,13 @@ namespace PetFamily.Infrastructure.Migrations
 
                             b1.Property<string>("Link")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasMaxLength(1000)
+                                .HasColumnType("character varying(1000)");
 
                             b1.Property<string>("Title")
                                 .IsRequired()
-                                .HasColumnType("text");
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)");
 
                             b1.HasKey("VolunteerId", "Id");
 

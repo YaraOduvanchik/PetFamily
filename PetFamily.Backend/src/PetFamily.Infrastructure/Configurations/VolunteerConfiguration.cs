@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PetFamily.Domain.Entities.Volunteers;
+using PetFamily.Domain.Shared;
 
 namespace PetFamily.Infrastructure.Configurations;
 
@@ -21,19 +22,23 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
         {
             b.Property(fn => fn.Name)
                 .HasColumnName("name")
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(Constraints.SHORT_LENGTH);;
 
             b.Property(fn => fn.Surname)
                 .HasColumnName("surname")
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(Constraints.SHORT_LENGTH);;
 
             b.Property(fn => fn.Patronymic)
                 .HasColumnName("patronymic")
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(Constraints.SHORT_LENGTH);;
         });
 
         builder.Property(p => p.Descriptions)
-            .IsRequired();
+            .IsRequired()
+            .HasMaxLength(Constraints.LONG_LENGTH);;
 
         builder.Property(p => p.ExperienceInYears)
             .IsRequired();
@@ -42,7 +47,8 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
         {
             b.Property(fn => fn.Value)
                 .HasColumnName("phone_number")
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(Constraints.SHORT_LENGTH);;
         });
 
         builder.OwnsMany(p => p.SocialNetworks, b =>
@@ -50,9 +56,12 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
             b.ToJson();
 
             b.Property(r => r.Title)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(Constraints.SHORT_LENGTH);
+            
             b.Property(r => r.Link)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(Constraints.MEDIUM_LENGTH);;
         });
 
         builder.OwnsMany(p => p.Requisites, b =>
@@ -60,9 +69,12 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
             b.ToJson();
 
             b.Property(r => r.Title)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(Constraints.SHORT_LENGTH);
+            
             b.Property(r => r.Description)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(Constraints.LONG_LENGTH);;
         });
 
         builder.HasMany(v => v.Pets)

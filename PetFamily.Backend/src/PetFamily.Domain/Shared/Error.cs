@@ -1,19 +1,41 @@
-﻿namespace PetFamily.Domain.Shared;
+﻿using System.Runtime.Serialization;
+
+namespace PetFamily.Domain.Shared;
 
 public record Error
 {
-    private Error(string code, string messege, ErrorType type)
-    {
-        Code = code;
-        Messege = messege;
-        Type = type;
-    }
-
+    private const string Separator = "||";
+    
     public string Code { get; }
 
-    public string Messege { get; }
+    public string Message { get; }
 
     public ErrorType Type { get; }
+    
+    private Error(string code, string message, ErrorType type)
+    {
+        Code = code;
+        Message = message;
+        Type = type;
+    }
+    
+    public string Serialize()
+    {
+        return $"{Code}{Separator}{Message}{Separator}{Type}";
+    }
+
+    public static Error Deserialize(string serialized)
+    {
+        var data = serialized.Split([Separator], StringSplitOptions.RemoveEmptyEntries);
+
+        if (data.Length < 3)
+            throw new($"Invalid error serialization: '{serialized}'");
+
+        if (Enum.TryParse(data[2], out ErrorType type) == false)
+            throw new($"Invalid error serialization: '{serialized}'");
+        
+        return new(data[0], data[1], type);
+    }
 
     public static Error Validation(string code, string message)
     {
