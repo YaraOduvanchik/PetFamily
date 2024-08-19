@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PetFamily.Domain.Entities.Pets;
+using PetFamily.Domain.Shared;
 
 namespace PetFamily.Infrastructure.Configurations;
 
@@ -18,7 +19,8 @@ public sealed class PetPhotoConfiguration : IEntityTypeConfiguration<PetPhoto>
                 value => PetPhotoId.Create(value));
 
         builder.Property(p => p.Path)
-            .IsRequired();
+            .IsRequired()
+            .HasMaxLength(Constraints.SHORT_LENGTH);
 
         builder.Property(p => p.IsMain)
             .IsRequired();

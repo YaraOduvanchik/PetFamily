@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PetFamily.Domain.Entities.Specieses;
+using PetFamily.Domain.Shared;
 
 namespace PetFamily.Infrastructure.Configurations;
 
@@ -19,7 +20,8 @@ public class SpeciesConfiguration : IEntityTypeConfiguration<Species>
                 value => SpeciesId.Create(value));
 
         builder.Property(s => s.Name)
-            .IsRequired();
+            .IsRequired()
+            .HasMaxLength(Constraints.SHORT_LENGTH);;
 
         builder.HasMany(s => s.Breeds)
             .WithOne()

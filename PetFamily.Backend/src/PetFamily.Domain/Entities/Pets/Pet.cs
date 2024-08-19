@@ -18,7 +18,6 @@ public sealed class Pet : Entity<PetId>
         string name,
         string type,
         string description,
-        string breed,
         string color,
         string healthInfo,
         double weight,
@@ -35,7 +34,6 @@ public sealed class Pet : Entity<PetId>
         Name = name;
         Type = type;
         Description = description;
-        Breed = breed;
         Color = color;
         HealthInfo = healthInfo;
         Weight = weight;
@@ -53,7 +51,6 @@ public sealed class Pet : Entity<PetId>
     public string Name { get; private set; }
     public string Type { get; private set; }
     public string Description { get; private set; }
-    public string Breed { get; private set; }
     public string Color { get; private set; }
     public string HealthInfo { get; private set; }
 
