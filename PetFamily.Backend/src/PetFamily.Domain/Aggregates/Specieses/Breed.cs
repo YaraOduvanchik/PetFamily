@@ -1,10 +1,12 @@
 ﻿using CSharpFunctionalExtensions;
 using PetFamily.Domain.Shared;
+using PetFamily.Domain.Shared.Ids;
 
-namespace PetFamily.Domain.Entities.Specieses;
+namespace PetFamily.Domain.Aggregates.Specieses;
 
 public sealed class Breed : Shared.Entity<BreedId>
 {
+    // ef core constructor
     private Breed(BreedId id) : base(id)
     {
     }
@@ -15,9 +17,9 @@ public sealed class Breed : Shared.Entity<BreedId>
         Description = description;
     }
 
-    public string Name { get; }
+    public string Name { get; private set; }
 
-    public string Description { get; }
+    public string Description { get; private set; }
 
     public static Result<Breed, Error> Create(
         BreedId id, string name, string description)

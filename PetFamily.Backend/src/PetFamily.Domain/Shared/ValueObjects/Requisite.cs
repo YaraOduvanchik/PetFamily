@@ -1,6 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 
-namespace PetFamily.Domain.ValueObjects;
+namespace PetFamily.Domain.Shared.ValueObjects;
 
 public record Requisite
 {

@@ -1,7 +1,5 @@
-﻿using CSharpFunctionalExtensions;
-using PetFamily.Application.Volunteers;
-using PetFamily.Domain.Entities.Volunteers;
-using PetFamily.Domain.Shared;
+﻿using PetFamily.Application.Volunteers;
+using PetFamily.Domain.Aggregates.Volunteers;
 
 namespace PetFamily.Infrastructure.Repositories;
 
@@ -13,7 +11,7 @@ public class VolunteerRepository : IVolunteerRepository
     {
         _dbContext = dbContext;
     }
-    
+
     public async Task<Guid> Add(Volunteer volunteer, CancellationToken cancellationToken)
     {
         await _dbContext.Volunteers.AddAsync(volunteer, cancellationToken);

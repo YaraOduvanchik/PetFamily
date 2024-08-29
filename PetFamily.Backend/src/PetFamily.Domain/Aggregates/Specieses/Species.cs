@@ -1,12 +1,14 @@
 ﻿using CSharpFunctionalExtensions;
 using PetFamily.Domain.Shared;
+using PetFamily.Domain.Shared.Ids;
 
-namespace PetFamily.Domain.Entities.Specieses;
+namespace PetFamily.Domain.Aggregates.Specieses;
 
 public sealed class Species : Shared.Entity<SpeciesId>
 {
     private readonly List<Breed> _breeds = [];
 
+    // ef core constructor
     private Species(SpeciesId id) : base(id)
     {
     }
@@ -16,7 +18,7 @@ public sealed class Species : Shared.Entity<SpeciesId>
         Name = name;
     }
 
-    public string Name { get; }
+    public string Name { get; private set; }
 
     public IReadOnlyList<Breed> Breeds => _breeds;
 

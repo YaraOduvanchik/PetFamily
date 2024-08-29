@@ -1,4 +1,4 @@
-﻿namespace PetFamily.Domain.Entities.Pets;
+﻿namespace PetFamily.Domain.Shared.Ids;
 
 public record PetPhotoId
 {

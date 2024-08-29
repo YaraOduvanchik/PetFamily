@@ -1,8 +1,6 @@
-﻿using CSharpFunctionalExtensions;
-using PetFamily.Domain.Entities.Specieses;
-using PetFamily.Domain.Shared;
+﻿using PetFamily.Domain.Shared.Ids;
 
-namespace PetFamily.Domain.ValueObjects;
+namespace PetFamily.Domain.Aggregates.Volunteers.Pets.ValueObjects;
 
 public record PetDetails
 {

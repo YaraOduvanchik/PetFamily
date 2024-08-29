@@ -12,7 +12,7 @@ public static class CustomValidators
     {
         return ruleBuilder.Custom((value, context) =>
         {
-            Result<TValueObject, Error> result = factoryMethod(value);
+            var result = factoryMethod(value);
 
             if (result.IsSuccess)
                 return;
@@ -20,9 +20,8 @@ public static class CustomValidators
             context.AddFailure(result.Error.Serialize());
         });
     }
-    
-    
-    
+
+
     public static IRuleBuilderOptions<T, TProperty> WithError<T, TProperty>(
         this IRuleBuilderOptions<T, TProperty> rule, Error error)
     {
