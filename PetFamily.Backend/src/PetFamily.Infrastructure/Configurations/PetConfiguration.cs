@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PetFamily.Domain.Entities.Pets;
-using PetFamily.Domain.Entities.Specieses;
+using PetFamily.Domain.Aggregates.Specieses;
+using PetFamily.Domain.Aggregates.Volunteers.Pets;
 using PetFamily.Domain.Shared;
+using PetFamily.Domain.Shared.Ids;
 
 namespace PetFamily.Infrastructure.Configurations;
 
@@ -49,17 +50,17 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
             b.Property(a => a.Country)
                 .HasColumnName("country")
                 .IsRequired()
-                .HasMaxLength(Constraints.SHORT_LENGTH);;
+                .HasMaxLength(Constraints.SHORT_LENGTH);
 
             b.Property(a => a.House)
                 .HasColumnName("house")
                 .IsRequired()
-                .HasMaxLength(Constraints.SHORT_LENGTH);;
+                .HasMaxLength(Constraints.SHORT_LENGTH);
 
             b.Property(a => a.Street)
                 .HasColumnName("street")
                 .IsRequired()
-                .HasMaxLength(Constraints.SHORT_LENGTH);;
+                .HasMaxLength(Constraints.SHORT_LENGTH);
         });
 
         builder.Property(p => p.Weight)
@@ -73,20 +74,20 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
             b.Property(pn => pn.Value)
                 .HasColumnName("phone_number")
                 .IsRequired()
-                .HasMaxLength(Constraints.SHORT_LENGTH);;
+                .HasMaxLength(Constraints.SHORT_LENGTH);
         });
 
         builder.Property(p => p.IsCastrated)
             .IsRequired()
-            .HasMaxLength(Constraints.SHORT_LENGTH);;
+            .HasMaxLength(Constraints.SHORT_LENGTH);
 
         builder.Property(p => p.BirthDate)
             .IsRequired()
-            .HasMaxLength(Constraints.SHORT_LENGTH);;
+            .HasMaxLength(Constraints.SHORT_LENGTH);
 
         builder.Property(p => p.IsVaccine)
             .IsRequired()
-            .HasMaxLength(Constraints.SHORT_LENGTH);;
+            .HasMaxLength(Constraints.SHORT_LENGTH);
 
         builder.ComplexProperty(p => p.PetDetails, b =>
         {
@@ -108,9 +109,10 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
             b.Property(pn => pn.Value)
                 .HasColumnName("help_status")
                 .IsRequired()
-                .HasMaxLength(Constraints.SHORT_LENGTH);;
+                .HasMaxLength(Constraints.SHORT_LENGTH);
+            ;
         });
-
+        
         builder.Property(p => p.CreatedDate)
             .IsRequired();
 
@@ -120,11 +122,11 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 
             b.Property(r => r.Title)
                 .IsRequired()
-                .HasMaxLength(Constraints.SHORT_LENGTH);;
+                .HasMaxLength(Constraints.SHORT_LENGTH);
 
             b.Property(r => r.Description)
                 .IsRequired()
-                .HasMaxLength(Constraints.LONG_LENGTH);;
+                .HasMaxLength(Constraints.LONG_LENGTH);
         });
 
         builder.HasMany(p => p.Photos)

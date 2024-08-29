@@ -1,7 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
-using PetFamily.Domain.Entities.Volunteers;
+using PetFamily.Domain.Aggregates.Volunteers;
 using PetFamily.Domain.Shared;
-using PetFamily.Domain.ValueObjects;
+using PetFamily.Domain.Shared.Ids;
+using PetFamily.Domain.Shared.ValueObjects;
 
 namespace PetFamily.Application.Volunteers.Create;
 
@@ -24,7 +25,7 @@ public class CreateVolunteerHandler
         if (phoneNumber.IsFailure)
             return phoneNumber.Error;
 
-        var volunteer = Volunteer.Create(VolunteerId.NewId(), fullname.Value, 
+        var volunteer = Volunteer.Create(VolunteerId.NewId(), fullname.Value,
             phoneNumber.Value, request.Description, request.ExperienceInYears);
         if (volunteer.IsFailure)
             return volunteer.Error;

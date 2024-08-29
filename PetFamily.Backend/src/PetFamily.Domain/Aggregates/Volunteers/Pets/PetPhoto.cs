@@ -1,7 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
 using PetFamily.Domain.Shared;
+using PetFamily.Domain.Shared.Ids;
 
-namespace PetFamily.Domain.Entities.Pets;
+namespace PetFamily.Domain.Aggregates.Volunteers.Pets;
 
 public sealed class PetPhoto : Shared.Entity<PetPhotoId>
 {

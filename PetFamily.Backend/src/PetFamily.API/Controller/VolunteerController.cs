@@ -5,7 +5,7 @@ namespace PetFamily.API.Controller;
 
 [ApiController]
 [Route("[controller]")]
-public class VolunteerController: ControllerBase
+public class VolunteerController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> Create(

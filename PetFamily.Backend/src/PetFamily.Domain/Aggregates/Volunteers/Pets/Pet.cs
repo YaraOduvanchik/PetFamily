@@ -1,13 +1,16 @@
-﻿using PetFamily.Domain.Shared;
-using PetFamily.Domain.ValueObjects;
+﻿using PetFamily.Domain.Aggregates.Volunteers.Pets.ValueObjects;
+using PetFamily.Domain.Shared;
+using PetFamily.Domain.Shared.Ids;
+using PetFamily.Domain.Shared.ValueObjects;
 
-namespace PetFamily.Domain.Entities.Pets;
+namespace PetFamily.Domain.Aggregates.Volunteers.Pets;
 
 public sealed class Pet : Entity<PetId>
 {
     private readonly List<PetPhoto> _photos = [];
     private readonly List<Requisite> _requisites = [];
 
+    // ef core constructor
     private Pet(PetId Id)
         : base(Id)
     {
