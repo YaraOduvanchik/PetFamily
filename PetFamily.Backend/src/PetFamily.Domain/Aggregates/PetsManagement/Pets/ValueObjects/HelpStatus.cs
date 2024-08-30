@@ -1,7 +1,7 @@
 using CSharpFunctionalExtensions;
 using PetFamily.Domain.Shared;
 
-namespace PetFamily.Domain.Aggregates.Volunteers.Pets.ValueObjects;
+namespace PetFamily.Domain.Aggregates.PetsManagement.Pets.ValueObjects;
 
 public record HelpStatus
 {

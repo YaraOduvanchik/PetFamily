@@ -3,9 +3,7 @@ using PetFamily.Application.Volunteers.Create;
 
 namespace PetFamily.API.Controller;
 
-[ApiController]
-[Route("[controller]")]
-public class VolunteerController : ControllerBase
+public class VolunteerController : ApplicationController
 {
     [HttpPost]
     public async Task<IActionResult> Create(

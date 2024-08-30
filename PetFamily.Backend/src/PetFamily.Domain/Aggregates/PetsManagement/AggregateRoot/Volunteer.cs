@@ -1,12 +1,12 @@
 ﻿using CSharpFunctionalExtensions;
-using PetFamily.Domain.Aggregates.Volunteers.Pets;
-using PetFamily.Domain.Aggregates.Volunteers.Pets.ValueObjects;
-using PetFamily.Domain.Aggregates.Volunteers.ValueObjects;
+using PetFamily.Domain.Aggregates.PetsManagement.Pets;
+using PetFamily.Domain.Aggregates.PetsManagement.Pets.ValueObjects;
+using PetFamily.Domain.Aggregates.PetsManagement.ValueObjects;
 using PetFamily.Domain.Shared;
 using PetFamily.Domain.Shared.Ids;
 using PetFamily.Domain.Shared.ValueObjects;
 
-namespace PetFamily.Domain.Aggregates.Volunteers;
+namespace PetFamily.Domain.Aggregates.PetsManagement.AggregateRoot;
 
 public sealed class Volunteer : Shared.Entity<VolunteerId>
 {

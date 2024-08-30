@@ -1,6 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 
-namespace PetFamily.Domain.Aggregates.Volunteers.ValueObjects;
+namespace PetFamily.Domain.Aggregates.PetsManagement.ValueObjects;
 
 public record SocialNetwork
 {

@@ -1,5 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
-using PetFamily.Domain.Aggregates.Volunteers;
+using PetFamily.Domain.Aggregates.PetsManagement.AggregateRoot;
 using PetFamily.Domain.Shared;
 using PetFamily.Domain.Shared.Ids;
 using PetFamily.Domain.Shared.ValueObjects;
@@ -17,16 +17,19 @@ public class CreateVolunteerHandler
 
     public async Task<Result<Guid, Error>> Handle(CreateVolunteerRequest request, CancellationToken cancellationToken)
     {
-        var fullname = Fullname.Create(request.Name, request.Surname, request.Patronymic);
-        if (fullname.IsFailure)
-            return fullname.Error;
+        var fullNameDto = request.FullName;
+        
+        var fullname = Fullname.Create(fullNameDto.Name, fullNameDto.Surname, fullNameDto.Patronymic);
 
         var phoneNumber = PhoneNumber.Create(request.PhoneNumber);
-        if (phoneNumber.IsFailure)
-            return phoneNumber.Error;
 
-        var volunteer = Volunteer.Create(VolunteerId.NewId(), fullname.Value,
-            phoneNumber.Value, request.Description, request.ExperienceInYears);
+        var volunteer = Volunteer.Create(
+            VolunteerId.NewId(), 
+            fullname.Value,
+            phoneNumber.Value, 
+            request.Description, 
+            request.ExperienceInYears);
+        
         if (volunteer.IsFailure)
             return volunteer.Error;
 

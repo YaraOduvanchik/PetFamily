@@ -27,10 +27,14 @@ public record Error
         var data = serialized.Split([Separator], StringSplitOptions.RemoveEmptyEntries);
 
         if (data.Length < 3)
+        {
             throw new Exception($"Invalid error serialization: '{serialized}'");
+        }
 
         if (Enum.TryParse(data[2], out ErrorType type) == false)
+        {
             throw new Exception($"Invalid error serialization: '{serialized}'");
+        }
 
         return new Error(data[0], data[1], type);
     }
