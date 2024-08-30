@@ -1,7 +1,8 @@
-using PetFamily.Application.Volunteers;
-using PetFamily.Application.Volunteers.Create;
+using FluentValidation;
+using PetFamily.API.Validation;
+using PetFamily.Application;
 using PetFamily.Infrastructure;
-using PetFamily.Infrastructure.Repositories;
+using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +11,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services
+    .AddInfrastructure()
+    .AddApplication();
 
-builder.Services.AddScoped<CreateVolunteerHandler>();
-builder.Services.AddScoped<IVolunteerRepository, VolunteerRepository>();
+ValidatorOptions.Global.LanguageManager.Enabled = false;
+
+builder.Services.AddFluentValidationAutoValidation(configuration =>
+{
+    configuration.OverrideDefaultResultFactoryWith<CustomResultFactory>();
+});
 
 var app = builder.Build();
 

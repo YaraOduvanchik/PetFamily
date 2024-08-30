@@ -2,7 +2,7 @@
 using PetFamily.Domain.Shared;
 using PetFamily.Domain.Shared.Ids;
 
-namespace PetFamily.Domain.Aggregates.Specieses;
+namespace PetFamily.Domain.Aggregates.SpeciesesManagement;
 
 public sealed class Species : Shared.Entity<SpeciesId>
 {

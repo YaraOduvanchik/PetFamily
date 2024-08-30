@@ -1,9 +1,9 @@
-﻿using PetFamily.Domain.Aggregates.Volunteers.Pets.ValueObjects;
+﻿using PetFamily.Domain.Aggregates.PetsManagement.Pets.ValueObjects;
 using PetFamily.Domain.Shared;
 using PetFamily.Domain.Shared.Ids;
 using PetFamily.Domain.Shared.ValueObjects;
 
-namespace PetFamily.Domain.Aggregates.Volunteers.Pets;
+namespace PetFamily.Domain.Aggregates.PetsManagement.Pets;
 
 public sealed class Pet : Entity<PetId>
 {
