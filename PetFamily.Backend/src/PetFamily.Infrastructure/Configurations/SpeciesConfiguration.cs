@@ -22,7 +22,6 @@ public class SpeciesConfiguration : IEntityTypeConfiguration<Species>
         builder.Property(s => s.Name)
             .IsRequired()
             .HasMaxLength(Constraints.SHORT_LENGTH);
-        ;
 
         builder.HasMany(s => s.Breeds)
             .WithOne()

@@ -17,9 +17,9 @@ public sealed class Breed : Shared.Entity<BreedId>
         Description = description;
     }
 
-    public string Name { get; private set; }
+    public string Name { get; private set; } = default!;
 
-    public string Description { get; private set; }
+    public string Description { get; private set; } = default!;
 
     public static Result<Breed, Error> Create(
         BreedId id, string name, string description)

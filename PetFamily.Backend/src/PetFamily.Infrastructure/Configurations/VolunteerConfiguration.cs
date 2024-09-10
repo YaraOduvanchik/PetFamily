@@ -25,25 +25,21 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
                 .HasColumnName("name")
                 .IsRequired()
                 .HasMaxLength(Constraints.SHORT_LENGTH);
-            ;
 
             b.Property(fn => fn.Surname)
                 .HasColumnName("surname")
                 .IsRequired()
                 .HasMaxLength(Constraints.SHORT_LENGTH);
-            ;
 
             b.Property(fn => fn.Patronymic)
                 .HasColumnName("patronymic")
                 .IsRequired()
                 .HasMaxLength(Constraints.SHORT_LENGTH);
-            ;
         });
 
-        builder.Property(p => p.Descriptions)
+        builder.Property(p => p.Description)
             .IsRequired()
             .HasMaxLength(Constraints.LONG_LENGTH);
-        ;
 
         builder.Property(p => p.ExperienceInYears)
             .IsRequired();
@@ -54,35 +50,38 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
                 .HasColumnName("phone_number")
                 .IsRequired()
                 .HasMaxLength(Constraints.SHORT_LENGTH);
-            ;
         });
 
-        builder.OwnsMany(p => p.SocialNetworks, b =>
+        builder.OwnsOne(p => p.SocialNetworksList, b =>
         {
-            b.ToJson();
+            b.ToJson("social_networks");
 
-            b.Property(r => r.Title)
-                .IsRequired()
-                .HasMaxLength(Constraints.SHORT_LENGTH);
+            b.OwnsMany(sn => sn.Values, bsn =>
+            {
+                bsn.Property(r => r.Title)
+                    .IsRequired()
+                    .HasMaxLength(Constraints.SHORT_LENGTH);
 
-            b.Property(r => r.Link)
-                .IsRequired()
-                .HasMaxLength(Constraints.MEDIUM_LENGTH);
-            ;
+                bsn.Property(r => r.Link)
+                    .IsRequired()
+                    .HasMaxLength(Constraints.MEDIUM_LENGTH);
+            });
         });
 
-        builder.OwnsMany(p => p.Requisites, b =>
+        builder.OwnsOne(p => p.RequisitesList, br =>
         {
-            b.ToJson();
+            br.ToJson("requisites");
 
-            b.Property(r => r.Title)
-                .IsRequired()
-                .HasMaxLength(Constraints.SHORT_LENGTH);
+            br.OwnsMany(r => r.Values, b =>
+            {
+                b.Property(r => r.Title)
+                    .IsRequired()
+                    .HasMaxLength(Constraints.SHORT_LENGTH);
 
-            b.Property(r => r.Description)
-                .IsRequired()
-                .HasMaxLength(Constraints.LONG_LENGTH);
-            ;
+                b.Property(r => r.Description)
+                    .IsRequired()
+                    .HasMaxLength(Constraints.MEDIUM_LENGTH);
+            });
         });
 
         builder.HasMany(v => v.Pets)

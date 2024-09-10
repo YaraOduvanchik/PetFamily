@@ -1,7 +1,4 @@
-﻿using System.Data;
-using CSharpFunctionalExtensions;
-using FluentValidation.Results;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using PetFamily.API.Response;
 using PetFamily.Domain.Shared;
@@ -14,10 +11,7 @@ public class CustomResultFactory : IFluentValidationAutoValidationResultFactory
     public IActionResult CreateActionResult(ActionExecutingContext context,
         ValidationProblemDetails? validationProblemDetails)
     {
-        if (validationProblemDetails is null)
-        {
-            throw new InvalidOperationException("ValidationProblemDetails is null");
-        }
+        if (validationProblemDetails is null) throw new InvalidOperationException("ValidationProblemDetails is null");
 
         List<ResponseError> errors = [];
 

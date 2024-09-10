@@ -28,14 +28,14 @@ namespace PetFamily.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
-                    descriptions = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: false),
+                    description = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: false),
                     experience_in_years = table.Column<int>(type: "integer", nullable: false),
                     name = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     patronymic = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     surname = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     phone_number = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
-                    requisites = table.Column<string>(type: "jsonb", nullable: true),
-                    social_networks = table.Column<string>(type: "jsonb", nullable: true)
+                    requisites = table.Column<string>(type: "jsonb", nullable: false),
+                    social_networks = table.Column<string>(type: "jsonb", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,7 +86,7 @@ namespace PetFamily.Infrastructure.Migrations
                     breed_id = table.Column<Guid>(type: "uuid", nullable: false),
                     species_id = table.Column<Guid>(type: "uuid", nullable: false),
                     phone_number = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
-                    requisites = table.Column<string>(type: "jsonb", nullable: true)
+                    requisites_list = table.Column<string>(type: "jsonb", nullable: false)
                 },
                 constraints: table =>
                 {

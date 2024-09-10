@@ -21,7 +21,7 @@ public static class Errors
             var label = name == null ? " " : " " + name + " ";
             return Error.Validation("length.is.invalid", $"invalid{label}length");
         }
-        
+
         public static Error InvalidLength(string? name = null)
         {
             var label = name == null ? " " : " " + name + " ";

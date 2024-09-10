@@ -9,18 +9,17 @@ public record BreedId
 
     public Guid Value { get; }
 
-    public static BreedId NewId()
-    {
-        return new BreedId(Guid.NewGuid());
-    }
+    public static BreedId NewId() => new(Guid.NewGuid());
 
-    public static BreedId Empty()
-    {
-        return new BreedId(Guid.Empty);
-    }
+    public static BreedId Empty() => new(Guid.Empty);
 
-    public static BreedId Create(Guid id)
+    public static BreedId Create(Guid id) => new(id);
+
+    public static implicit operator BreedId(Guid id) => new(id);
+
+    public static implicit operator Guid(BreedId breedId)
     {
-        return new BreedId(id);
+        ArgumentNullException.ThrowIfNull(breedId);
+        return breedId.Value;
     }
 }

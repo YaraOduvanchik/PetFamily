@@ -21,23 +21,23 @@ public class CreateVolunteerHandler
     public async Task<Result<Guid, Error>> Handle(CreateVolunteerRequest request, CancellationToken cancellationToken)
     {
         var volunteerId = VolunteerId.NewId();
-        
+
         var fullNameDto = request.FullName;
-        
+
         var fullname = Fullname.Create(fullNameDto.Name, fullNameDto.Surname, fullNameDto.Patronymic);
 
         var phoneNumber = PhoneNumber.Create(request.PhoneNumber);
 
         var volunteer = Volunteer.Create(
-            volunteerId, 
+            volunteerId,
             fullname.Value,
-            phoneNumber.Value, 
-            request.Description, 
+            phoneNumber.Value,
+            request.Description,
             request.ExperienceInYears);
-        
+
         if (volunteer.IsFailure)
             return volunteer.Error;
-        
+
         _logger.LogInformation("Created volunteer with ID: {volunteerId}", volunteerId);
 
         return await _repository.Add(volunteer.Value, cancellationToken);
