@@ -16,12 +16,12 @@ public class VolunteerValidation : AbstractValidator<CreateVolunteerRequest>
 {
     public VolunteerValidation()
     {
-        RuleFor(v => v.FullName )
+        RuleFor(v => v.FullName)
             .MustBeValueObject(x => Fullname.Create(x.Name, x.Surname, x.Patronymic));
-        
+
         RuleFor(v => v.PhoneNumber)
             .MustBeValueObject(PhoneNumber.Create);
-        
+
         RuleFor(v => v.Description)
             .NotEmptyWithError()
             .MaximumLengthWithError(Constraints.LONG_LENGTH);

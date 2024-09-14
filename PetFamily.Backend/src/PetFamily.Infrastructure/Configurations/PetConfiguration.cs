@@ -98,9 +98,7 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 
             b.Property(pd => pd.BreedId)
                 .HasColumnName("breed_id")
-                .HasConversion(
-                    id => id.Value,
-                    value => BreedId.Create(value));
+                .IsRequired();
         });
 
         builder.ComplexProperty(p => p.HelpStatus, b =>
@@ -109,23 +107,25 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
                 .HasColumnName("help_status")
                 .IsRequired()
                 .HasMaxLength(Constraints.SHORT_LENGTH);
-            ;
         });
-        
+
         builder.Property(p => p.CreatedDate)
             .IsRequired();
 
-        builder.OwnsMany(p => p.Requisites, b =>
+        builder.OwnsOne(p => p.RequisitesList, b =>
         {
             b.ToJson();
 
-            b.Property(r => r.Title)
-                .IsRequired()
-                .HasMaxLength(Constraints.SHORT_LENGTH);
+            b.OwnsMany(r => r.Values, br =>
+            {
+                br.Property(r => r.Title)
+                    .IsRequired()
+                    .HasMaxLength(Constraints.SHORT_LENGTH);
 
-            b.Property(r => r.Description)
-                .IsRequired()
-                .HasMaxLength(Constraints.LONG_LENGTH);
+                br.Property(r => r.Description)
+                    .IsRequired()
+                    .HasMaxLength(Constraints.LONG_LENGTH);
+            });
         });
 
         builder.HasMany(p => p.Photos)

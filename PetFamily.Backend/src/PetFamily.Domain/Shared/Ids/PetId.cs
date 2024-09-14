@@ -9,18 +9,17 @@ public record PetId
 
     public Guid Value { get; }
 
-    public static PetId NewId()
-    {
-        return new PetId(Guid.NewGuid());
-    }
+    public static PetId NewId() => new(Guid.NewGuid());
 
-    public static PetId Empty()
-    {
-        return new PetId(Guid.Empty);
-    }
+    public static PetId Empty() => new(Guid.Empty);
 
-    public static PetId Create(Guid id)
+    public static PetId Create(Guid id) => new(id);
+
+    public static implicit operator PetId(Guid id) => new(id);
+
+    public static implicit operator Guid(PetId petId)
     {
-        return new PetId(id);
+        ArgumentNullException.ThrowIfNull(petId);
+        return petId.Value;
     }
 }

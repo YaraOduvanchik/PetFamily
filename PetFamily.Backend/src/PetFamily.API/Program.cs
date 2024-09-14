@@ -1,7 +1,3 @@
-using FluentValidation;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.HttpLogging;
-using PetFamily.API;
 using PetFamily.API.Extensions;
 using PetFamily.API.Middlewares;
 using PetFamily.API.Validation;
@@ -16,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.Debug()
-    .WriteTo.Seq(builder.Configuration.GetConnectionString("Seq") 
+    .WriteTo.Seq(builder.Configuration.GetConnectionString("Seq")
                  ?? throw new ArgumentNullException("Seq"))
     .Enrich.WithThreadId()
     .Enrich.WithEnvironmentName()

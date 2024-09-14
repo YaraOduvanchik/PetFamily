@@ -18,7 +18,7 @@ public sealed class Species : Shared.Entity<SpeciesId>
         Name = name;
     }
 
-    public string Name { get; private set; }
+    public string Name { get; private set; } = default!;
 
     public IReadOnlyList<Breed> Breeds => _breeds;
 

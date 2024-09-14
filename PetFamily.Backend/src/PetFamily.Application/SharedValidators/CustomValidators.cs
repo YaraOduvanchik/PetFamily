@@ -38,8 +38,8 @@ public static class CustomValidators
             .WithError(Errors.General.InvalidLength());
     }
 
-    public static IRuleBuilderOptions<T, TProperty?> GreaterThanWithError<T, TProperty>(
-        this IRuleBuilder<T, TProperty?> ruleBuilder, TProperty valueToCompare)
+    public static IRuleBuilderOptions<T, TProperty> GreaterThanWithError<T, TProperty>(
+        this IRuleBuilder<T, TProperty> ruleBuilder, TProperty valueToCompare)
         where TProperty : struct, IComparable<TProperty>, IComparable
     {
         return ruleBuilder

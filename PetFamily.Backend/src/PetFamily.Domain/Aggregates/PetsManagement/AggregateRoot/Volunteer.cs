@@ -11,8 +11,6 @@ namespace PetFamily.Domain.Aggregates.PetsManagement.AggregateRoot;
 public sealed class Volunteer : Shared.Entity<VolunteerId>
 {
     private readonly List<Pet> _pets = [];
-    private readonly List<Requisite> _requisites = [];
-    private readonly List<SocialNetwork> _socialNetworks = [];
 
     // ef core constructor
     private Volunteer(VolunteerId id) : base(id)
@@ -23,25 +21,28 @@ public sealed class Volunteer : Shared.Entity<VolunteerId>
         VolunteerId id,
         Fullname fullName,
         PhoneNumber phoneNumber,
-        string descriptions,
+        string description,
         int experienceInYears)
         : base(id)
     {
         FullName = fullName;
         PhoneNumber = phoneNumber;
-        Descriptions = descriptions;
+        Description = description;
         ExperienceInYears = experienceInYears;
+        SocialNetworksList = new([]);
+        RequisitesList = new([]);
     }
 
-    public Fullname FullName { get; private set; }
-    public PhoneNumber PhoneNumber { get; private set; }
+    public Fullname FullName { get; private set; } = default!;
+    public PhoneNumber PhoneNumber { get; private set; } = default!;
 
-    public string Descriptions { get; private set; }
+    public string Description { get; private set; } = default!;
 
     public int ExperienceInYears { get; private set; }
 
-    public IReadOnlyList<SocialNetwork> SocialNetworks => _socialNetworks;
-    public IReadOnlyList<Requisite> Requisites => _requisites;
+    public ValueObjectList<SocialNetwork> SocialNetworksList { get; private set; }
+    public ValueObjectList<Requisite> RequisitesList { get; private set; }
+
     public IReadOnlyList<Pet> Pets => _pets;
 
     public int CountPetsFoundHomes() => _pets.Count(p => p.HelpStatus == HelpStatus.FoundTheHouse);
@@ -50,23 +51,23 @@ public sealed class Volunteer : Shared.Entity<VolunteerId>
 
     public int CountPetsCurrentlyTreatment() => _pets.Count(p => p.HelpStatus == HelpStatus.CurrentlyTreatment);
 
-    public Result AddSocialNetwork(SocialNetwork socialNetwork)
+    public void UpdateMainInfo(
+        Fullname fullName,
+        PhoneNumber phoneNumber,
+        string description,
+        int experienceInYears)
     {
-        // ToDo сделать проверки
-
-        _socialNetworks.Add(socialNetwork);
-
-        return Result.Success();
+        FullName = fullName;
+        PhoneNumber = phoneNumber;
+        Description = description;
+        ExperienceInYears = experienceInYears;
     }
 
-    public Result AddRequisite(Requisite requisite)
-    {
-        // ToDo сделать проверки
+    public void UploadSocialNetworksList(ValueObjectList<SocialNetwork> socialNetworksList) =>
+        SocialNetworksList = socialNetworksList;
 
-        _requisites.Add(requisite);
-
-        return Result.Success();
-    }
+    public void UploadRequisitesList(ValueObjectList<Requisite> requisitesList) =>
+        RequisitesList = requisitesList;
 
     public Result AddPet(Pet pet)
     {

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using PetFamily.Application.Volunteers;
 using PetFamily.Infrastructure.Repositories;
 
@@ -12,14 +11,14 @@ public static class Inject
         services.AddDbContext<ApplicationDbContext>();
 
         services.AddRepositories();
-        
+
         return services;
     }
-    
+
     private static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IVolunteerRepository, VolunteerRepository>();
-        
+
         return services;
     }
 }

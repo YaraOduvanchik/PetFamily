@@ -9,18 +9,17 @@ public record PetPhotoId
 
     public Guid Value { get; }
 
-    public static PetPhotoId NewId()
-    {
-        return new PetPhotoId(Guid.NewGuid());
-    }
+    public static PetPhotoId NewId() => new(Guid.NewGuid());
 
-    public static PetPhotoId Empty()
-    {
-        return new PetPhotoId(Guid.Empty);
-    }
+    public static PetPhotoId Empty() => new(Guid.Empty);
 
-    public static PetPhotoId Create(Guid id)
+    public static PetPhotoId Create(Guid id) => new(id);
+
+    public static implicit operator PetPhotoId(Guid id) => new(id);
+
+    public static implicit operator Guid(PetPhotoId petPhotoId)
     {
-        return new PetPhotoId(id);
+        ArgumentNullException.ThrowIfNull(petPhotoId);
+        return petPhotoId.Value;
     }
 }

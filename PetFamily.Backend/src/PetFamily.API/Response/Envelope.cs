@@ -1,13 +1,11 @@
-﻿using PetFamily.Domain.Shared;
-
-namespace PetFamily.API.Response;
+﻿namespace PetFamily.API.Response;
 
 public record Envelope
 {
     public object? Result { get; }
-    
-    public List<ResponseError> Errors { get; } 
-    
+
+    public List<ResponseError> Errors { get; }
+
     public DateTime TimeGenerated { get; }
 
     private Envelope(object? result, IEnumerable<ResponseError> errors)
@@ -18,6 +16,6 @@ public record Envelope
     }
 
     public static Envelope Ok(object? result) => new(result, []);
-    
+
     public static Envelope Error(IEnumerable<ResponseError> errors) => new(null, errors);
 }

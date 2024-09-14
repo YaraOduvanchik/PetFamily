@@ -9,18 +9,17 @@ public record SpeciesId
 
     public Guid Value { get; }
 
-    public static SpeciesId NewId()
-    {
-        return new SpeciesId(Guid.NewGuid());
-    }
+    public static SpeciesId NewId() => new(Guid.NewGuid());
 
-    public static SpeciesId Empty()
-    {
-        return new SpeciesId(Guid.Empty);
-    }
+    public static SpeciesId Empty() => new(Guid.Empty);
 
-    public static SpeciesId Create(Guid id)
+    public static SpeciesId Create(Guid id) => new(id);
+
+    public static implicit operator SpeciesId(Guid id) => new(id);
+
+    public static implicit operator Guid(SpeciesId speciesId)
     {
-        return new SpeciesId(id);
+        ArgumentNullException.ThrowIfNull(speciesId);
+        return speciesId.Value;
     }
 }
