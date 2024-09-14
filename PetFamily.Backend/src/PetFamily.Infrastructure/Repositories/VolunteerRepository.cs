@@ -28,9 +28,9 @@ public class VolunteerRepository : IVolunteerRepository
     {
         _dbContext.Volunteers.Attach(volunteer);
         
-        await _dbContext.SaveChangesAsync(ct);
+        var result = await _dbContext.SaveChangesAsync(ct);
         
-        return volunteer.Id;
+        return volunteer.Id.Value;
     }
 
     public async Task<Result<Volunteer, Error>> GetById(VolunteerId id, CancellationToken ct)

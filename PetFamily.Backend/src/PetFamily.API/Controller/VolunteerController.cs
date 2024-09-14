@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PetFamily.Application.Volunteers.Create;
 using PetFamily.Application.Volunteers.Update.MainInfo;
+using PetFamily.Application.Volunteers.Update.Requisites;
 using PetFamily.Application.Volunteers.Update.SocialNetworks;
 using PetFamily.Domain.Shared.Ids;
 
@@ -61,6 +62,27 @@ public class VolunteerController : ApplicationController
         if (result.IsFailure)
             return BadRequest(result.Error);
 
-        return Ok(result);
+        return Ok(result.Value);
+    }
+    
+    [HttpPut("{id:guid}/upload-requisites")]
+    public async Task<IActionResult> UpdateRequisites(
+        [FromRoute] Guid id,
+        [FromServices] UpdateRequisitesHandler handler,
+        [FromBody] UpdateRequisitesDto dto,
+        [FromServices] IValidator<UpdateRequisitesRequest> validator,
+        CancellationToken cancellationToken)
+    {
+        var request = new UpdateRequisitesRequest(VolunteerId.Create(id), dto);
+
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        if (validationResult.IsValid == false)
+            return BadRequest(validationResult.Errors);
+
+        var result = await handler.Handle(request, cancellationToken);
+        if (result.IsFailure)
+            return BadRequest(result.Error);
+
+        return Ok(result.Value);
     }
 }

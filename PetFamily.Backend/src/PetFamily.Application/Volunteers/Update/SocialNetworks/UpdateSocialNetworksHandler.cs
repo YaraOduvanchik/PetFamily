@@ -24,8 +24,6 @@ public class UpdateSocialNetworksHandler
         var volunteer = await _volunteerRepository.GetById(request.Id, ct);
         if (volunteer.IsFailure)
             return volunteer.Error;
-
-        var socialNetworksDto = request.Dto.SocialNetworks;
         
         var socialNetworkList = new ValueObjectList<SocialNetwork>(
             request.Dto.SocialNetworks
