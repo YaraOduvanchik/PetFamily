@@ -12,9 +12,9 @@ public record CreateVolunteerRequest(
     string Description,
     int ExperienceInYears);
 
-public class VolunteerValidation : AbstractValidator<CreateVolunteerRequest>
+public class VolunteerValidator : AbstractValidator<CreateVolunteerRequest>
 {
-    public VolunteerValidation()
+    public VolunteerValidator()
     {
         RuleFor(v => v.FullName)
             .MustBeValueObject(x => Fullname.Create(x.Name, x.Surname, x.Patronymic));

@@ -30,6 +30,7 @@ namespace PetFamily.Infrastructure.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     description = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: false),
                     experience_in_years = table.Column<int>(type: "integer", nullable: false),
+                    is_delete = table.Column<bool>(type: "boolean", nullable: false),
                     name = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     patronymic = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     surname = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
@@ -77,6 +78,7 @@ namespace PetFamily.Infrastructure.Migrations
                     is_vaccine = table.Column<bool>(type: "boolean", maxLength: 150, nullable: false),
                     birth_date = table.Column<DateTimeOffset>(type: "timestamp with time zone", maxLength: 150, nullable: false),
                     created_date = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    is_delete = table.Column<bool>(type: "boolean", nullable: false),
                     volunteer_id = table.Column<Guid>(type: "uuid", nullable: true),
                     city = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     country = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
@@ -105,6 +107,7 @@ namespace PetFamily.Infrastructure.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     path = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     is_main = table.Column<bool>(type: "boolean", nullable: false),
+                    is_delete = table.Column<bool>(type: "boolean", nullable: false),
                     pet_id = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
