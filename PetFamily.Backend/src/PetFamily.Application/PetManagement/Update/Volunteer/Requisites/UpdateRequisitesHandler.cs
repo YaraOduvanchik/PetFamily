@@ -27,6 +27,8 @@ public class UpdateRequisitesHandler
         var requisites = new ValueObjectList<Requisite>(request.Dto.Requests
             .Select(r => Requisite.Create(r.Title, r.Description).Value));
         
+        volunteerResult.Value.UploadRequisitesList(requisites);
+        
         var result = await _repository.Save(volunteerResult.Value, cancellationToken);
 
         _logger.LogInformation("Updated social networks from a volunteer with an id: {volunteerResult.Value.Id}",

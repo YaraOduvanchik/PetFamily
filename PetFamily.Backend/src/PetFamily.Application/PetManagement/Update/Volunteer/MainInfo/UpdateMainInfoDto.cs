@@ -16,9 +16,9 @@ public record FullnameDto(
     string Surname,
     string Patronymic);
 
-public class UploadMainInfoDtoValidation : AbstractValidator<UpdateMainInfoDto>
+public class UploadMainInfoDtoValidator : AbstractValidator<UpdateMainInfoDto>
 {
-    public UploadMainInfoDtoValidation()
+    public UploadMainInfoDtoValidator()
     {
         RuleFor(d => d.FullName)
             .MustBeValueObject(f =>

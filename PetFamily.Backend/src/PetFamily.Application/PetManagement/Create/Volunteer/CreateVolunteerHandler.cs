@@ -12,7 +12,9 @@ public class CreateVolunteerHandler
     private readonly IVolunteerRepository _repository;
     private readonly ILogger<CreateVolunteerHandler> _logger;
 
-    public CreateVolunteerHandler(IVolunteerRepository repository, ILogger<CreateVolunteerHandler> logger)
+    public CreateVolunteerHandler(
+        IVolunteerRepository repository,
+        ILogger<CreateVolunteerHandler> logger)
     {
         _repository = repository;
         _logger = logger;

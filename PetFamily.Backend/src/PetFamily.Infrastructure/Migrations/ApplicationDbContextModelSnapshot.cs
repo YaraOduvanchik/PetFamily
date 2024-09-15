@@ -39,6 +39,10 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("experience_in_years");
 
+                    b.Property<bool>("_isDelete")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_delete");
+
                     b.ComplexProperty<Dictionary<string, object>>("FullName", "PetFamily.Domain.Aggregates.PetsManagement.AggregateRoot.Volunteer.FullName#Fullname", b1 =>
                         {
                             b1.IsRequired();
@@ -142,6 +146,10 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasColumnType("double precision")
                         .HasColumnName("weight");
 
+                    b.Property<bool>("_isDelete")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_delete");
+
                     b.Property<Guid?>("volunteer_id")
                         .HasColumnType("uuid")
                         .HasColumnName("volunteer_id");
@@ -234,6 +242,10 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)")
                         .HasColumnName("path");
+
+                    b.Property<bool>("_isDelete")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_delete");
 
                     b.Property<Guid?>("pet_id")
                         .HasColumnType("uuid")

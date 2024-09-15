@@ -25,5 +25,9 @@ public sealed class PetPhotoConfiguration : IEntityTypeConfiguration<PetPhoto>
 
         builder.Property(p => p.IsMain)
             .IsRequired();
+
+        builder.Property<bool>("_isDelete")
+            .UsePropertyAccessMode(PropertyAccessMode.Field)
+            .HasColumnName("is_delete");
     }
 }

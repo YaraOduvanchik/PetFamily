@@ -1,6 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
 using PetFamily.Domain.Aggregates.PetsManagement.Pets;
-using PetFamily.Domain.Aggregates.PetsManagement.Pets.ValueObjects;
 using PetFamily.Domain.Aggregates.PetsManagement.ValueObjects;
 using PetFamily.Domain.Shared;
 using PetFamily.Domain.Shared.Ids;
@@ -8,9 +7,10 @@ using PetFamily.Domain.Shared.ValueObjects;
 
 namespace PetFamily.Domain.Aggregates.PetsManagement.AggregateRoot;
 
-public sealed class Volunteer : Shared.Entity<VolunteerId>
+public sealed class Volunteer : Shared.Entity<VolunteerId>, ISoftDeletable
 {
     private readonly List<Pet> _pets = [];
+    private bool _isDelete = false;
 
     // ef core constructor
     private Volunteer(VolunteerId id) : base(id)
@@ -69,14 +69,30 @@ public sealed class Volunteer : Shared.Entity<VolunteerId>
     public void UploadRequisitesList(ValueObjectList<Requisite> requisitesList) =>
         RequisitesList = requisitesList;
 
-    public Result AddPet(Pet pet)
+    public void Delete()
     {
-        // ToDo сделать проверки
-
-        _pets.Add(pet);
-
-        return Result.Success();
+        if (_isDelete == false)
+        {
+            _isDelete = true;
+        }
     }
+
+    public void Restore()
+    {
+        if (_isDelete)
+        {
+            _isDelete = false;
+        }
+    }
+
+    // public Result AddPet(Pet pet)
+    // {
+    //     // ToDo сделать проверки
+    //
+    //     _pets.Add(pet);
+    //
+    //     return Result.Success();
+    // }
 
     public static Result<Volunteer, Error> Create(
         VolunteerId id,

@@ -131,5 +131,9 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
         builder.HasMany(p => p.Photos)
             .WithOne()
             .HasForeignKey("pet_id");
+        
+        builder.Property<bool>("_isDelete")
+            .UsePropertyAccessMode(PropertyAccessMode.Field)
+            .HasColumnName("is_delete");
     }
 }
